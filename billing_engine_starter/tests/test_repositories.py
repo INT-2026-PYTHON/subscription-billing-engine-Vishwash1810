@@ -213,9 +213,9 @@ class TestUsageRecordRepository:
     def test_sum_for_period(self, db):
         sid = self._setup(db)
         repo = UsageRecordRepository(db)
-        repo.add(sid, "calls", 100)
-        repo.add(sid, "calls", 250)
-        repo.add(sid, "calls", 50)
+        repo.add(sid, "calls", 100, date(2026, 1, 15).isoformat())
+        repo.add(sid, "calls", 250, date(2026, 1, 20).isoformat())
+        repo.add(sid, "calls", 50, date(2026, 1, 25).isoformat())
         assert repo.sum_for_period(sid, "calls", date(2026, 1, 1), date(2026, 2, 1)) == 400
 
     def test_sum_empty_returns_zero(self, db):
